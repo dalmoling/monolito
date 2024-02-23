@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+</head>
+<body>
+    <h1>Lista de Tarefas</h1>
+    <input type="text" id="taskInput">
+    <button onclick="addTask()">Adicionar Tarefa</button>
+    <ul id="taskList">
+    </ul>
+
+    <script>
+        function addTask() {
+            var taskInput = document.getElementById("taskInput");
+            var taskText = taskInput.value.trim();
+
+            if (taskText !== "") {
+                var taskList = document.getElementById("taskList");
+                var newTaskItem = document.createElement("li");
+                newTaskItem.textContent = taskText;
+                taskList.appendChild(newTaskItem);
+
+                // Limpa o campo de entrada após adicionar a tarefa
+                taskInput.value = "";
+            }
+        }
+
+        function removeTask(event) {
+            var taskItem = event.target;
+            if (taskItem.tagName === "LI") {
+                taskItem.parentNode.removeChild(taskItem);
+            }
+        }
+
+        document.getElementById("taskList").addEventListener("click", removeTask);
+    </script>
+</body>
+</html>
